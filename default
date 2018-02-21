@@ -1,5 +1,19 @@
+ssl_certificate  /etc/ssl/private/nginx-selfsigned.crt;
+ssl_certificate_key  /etc/ssl/private/nginx-selfsigned.key;
+ssl_session_cache shared:SSL:1m;
+
 server {
-    server_name _;
+    listen 443 ssl;
+    listen 80 ;
+    server_name signup.eig-dev.queencitygrid.net;
+    
+    if ($http_x_forwarded_proto = '') {
+        set $http_x_forwarded_proto  $scheme;
+    }
+    
+    chunked_transfer_encoding on;
+    client_max_body_size 0;    
+      
     root /usr/share/nginx/html;
     index index.html;
     
