@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Publish') {
         
-            
+            steps {
                 echo 'Publishing....'
                 docker.withRegistry('https://nexus.eig-dev.queencitygrid.net:31313', 'jenkins-nexus-qcg') {
 
@@ -29,7 +29,7 @@ pipeline {
                   /* Push the container to the custom Registry */
                   image.push()
                 }
-            
+            }
         }
     }
 }
