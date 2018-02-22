@@ -7,7 +7,8 @@ pipeline {
                 echo 'Building..'
                 sh 'npm install'
                 sh 'npm run build'
-                sh 'docker build -t bigfleet/eig-dev-signup:prod-2 -f Dockerfile.prod .'
+                def dockerfile = 'Dockerfile.prod'
+                def customImage = docker.build("nexus.eig-dev.queencitygrid.net:31313/eig-dev-signup:${env.BUILD_ID}", "-f ${dockerfile} .")
             }
         }
         stage('Test') {
@@ -15,9 +16,16 @@ pipeline {
                 echo 'No testing for this app.'
             }
         }
-        stage('Deploy') {
+        stage('Publish') {
             steps {
-                echo 'Deploying....'
+                echo 'Publishing....'
+                docker.withRegistry('https://nexus.eig-dev.queencitygrid.net:31313', 'jenkins-nexus-qcg') {
+
+                    def customImage = docker.image("nexus.eig-dev.queencitygrid.net:31313/eig-dev-signup:${env.BUILD_ID}")
+
+                    /* Push the container to the custom Registry */
+                    customImage.push()
+                }
             }
         }
     }
