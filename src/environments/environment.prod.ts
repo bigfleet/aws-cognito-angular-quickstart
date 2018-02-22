@@ -1,17 +1,17 @@
 export const environment = {
     production: true,
 
-    region: 'us-east-1',
+    region: 'us-west-2',
 
-    identityPoolId: 'us-east-1:fbe0340f-9ffc-4449-a935-bb6a6661fd53',
-    userPoolId: 'us-east-1_PGSbCVZ7S',
-    clientId: 'hh5ibv67so0qukt55c5ulaltk',
+    identityPoolId: 'us-west-2:a98e357b-776a-45db-9927-381fa459fd56',
+    userPoolId: 'us-west-2_SshOzbjgr',
+    clientId: '15bmhoukr72jod8f2bu3rtbrqq',
 
     rekognitionBucket: 'rekognition-pics',
     albumName: "usercontent",
     bucketRegion: 'us-east-1',
 
-    ddbTableName: 'LoginTrail',
+    ddbTableName: 'staff_users',
 
     cognito_idp_endpoint: '',
     cognito_identity_endpoint: '',
