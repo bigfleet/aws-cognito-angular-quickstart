@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'npm install'
+                sh 'docker build -t bigfleet/eig-dev-signup:prod-2 -f Dockerfile.prod .'
             }
         }
         stage('Test') {
