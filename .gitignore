@@ -38,3 +38,6 @@ Thumbs.db
 # Build Artifacts
 upload.zip
 resetConfig.sh
+
+# SSL Certs
+ssl/*
